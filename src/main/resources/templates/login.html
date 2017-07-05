@@ -1,0 +1,32 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>BEM | Badan Eksekutif Mahasiswa</title>
+  <th:block th:include="layout :: head"></th:block>
+</head>
+
+<body class="hold-transition">
+<div class="login-box">
+
+    <div class="box-body">
+    <div class="logo" style="text-align: center;">
+      <img src="/img/bem.png" class="user-image" alt="User Image" width="50px" height="50px"/>
+    </div>
+    
+    <p class="login-box-msg"> </p>
+    <form th:action="@{/login}" method="post">
+      <div class="form-group has-feedback">
+        <input name="username"  type="text" class="form-control" placeholder="NIM"/>
+        <span class="fa fa-user form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback">
+        <input name="password" type="password" class="form-control" placeholder="Password"/>
+        <span class="fa fa-unlock-alt form-control-feedback"></span>
+      </div>
+      <button type="submit" class="btn btn-primary btn-flat pull-right">Sign In</button>
+    </form>
+  </div>
+</div>
+
+</body>
+</html>
+ 

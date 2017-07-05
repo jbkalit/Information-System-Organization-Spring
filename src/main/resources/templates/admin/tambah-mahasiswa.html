@@ -1,0 +1,204 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>BEM | Badan Eksekutif Mahasiswa</title>
+<th:block th:include="layout :: head"></th:block>
+
+</head>
+
+<body class="hold-transition skin-blue layout-boxed sidebar-mini">
+
+	<div class="wrapper">
+		<th:block th:include="layout :: main-header"></th:block>
+
+		<div class="content-wrapper">
+			<section class="content-header">
+				<h1>
+					SIBEM <small>Sistem Informasi Badan Eksekutif Mahasiswa</small>
+				</h1>
+
+				<ol class="breadcrumb">
+					<li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+
+				</ol>
+
+			</section>
+
+			<!-- Main content -->
+			<section class="content">
+
+				<!-- Main row -->
+				<div class="row">
+					<!-- Left col -->
+					<div class="col-md-12">
+
+
+						<div class="box box-warning">
+							<div class="box-header with-border">
+								<h3 class="box-title">General Elements</h3>
+							</div>
+							<!-- /.box-header -->
+							<div class="box-body">
+
+
+								<form class="form-horizontal"  th:action="@{/create/mahasiswa}" method="post" th:object="${mahasiswa}">
+
+
+										<!-- Text input-->
+										<div class="form-group">
+											<label class="col-md-4 control-label">Nim</label>
+											<div class="col-md-4">
+												<input id="company_name" name="nim" placeholder="Nim"
+													class="form-control input-md" type="text" th:field="*{nim}" />
+
+											</div>
+										</div>
+
+										<!-- Text input-->
+										<div class="form-group">
+											<label class="col-md-4 control-label">Nama
+												Lengkap</label>
+											<div class="col-md-5">
+												<input id="requestName" name="fullname"
+													placeholder="Full Name" class="form-control input-md" type="text" th:field="*{fullname}" />
+
+											</div>
+										</div>
+										
+										<!-- Text input-->
+										<div class="form-group">
+											<label class="col-md-4 control-label">Tanggal
+												Lahir</label>
+											<div class="col-md-5">
+												<input id="requestTanggal" name="TanggalLahir"
+													placeholder="Tanggal Lahir" class="form-control input-md" type="text" th:field="*{tanggallahir}" />
+
+											</div>
+										</div>
+
+										<!-- Text input-->
+										<div class="form-group">
+											<label class="col-md-4 control-label">Angkatan</label>
+											<div class="col-md-2">
+												<input id="maxB" name="angkatan" placeholder="Angkatan"
+													class="form-control input-md" type="text" th:field="*{angkatan}" />
+
+											</div>
+										</div>
+
+										<!-- Select Basic -->
+										<div class="form-group">
+											<label class="col-md-4 control-label">Jenis
+												Kelamin</label>
+											<div class="col-md-2">
+												<select id="declineType" name="jenis_kelamin" class="form-control" th:field="*{jeniskelamin}">
+													<option value="Perempuan">------</option>
+													<option value="Perempuan">Perempuan</option>
+													<option value="Laki-laki">Laki-laki</option>
+												</select>
+											</div>
+										</div>
+
+
+										<!-- Textarea -->
+										<div class="form-group">
+											<label class="col-md-4 control-label">Alamat</label>
+											<div class="col-md-3">
+												<textarea class="form-control" id="comments" name="alamat"
+													placeholder="Alamat" th:field="*{alamat}"></textarea>
+											</div>
+										</div>
+
+
+										<!-- Text input-->
+										<div class="form-group">
+											<label class="col-md-4 control-label">Password</label>
+											<div class="col-md-2">
+												<input id="minB" name="password" placeholder="Password"
+													class="form-control input-md" type="password" th:field="*{plainPassword}" />
+
+											</div>
+										</div>
+
+
+										<!-- Text input-->
+										<div class="form-group">
+											<label class="col-md-4 control-label">Email</label>
+											<div class="col-md-4">
+												<input id="econLimGas" name="email"
+													placeholder="abcfefg@hijkl.com"
+													class="form-control input-md" type="email" th:field="*{email}" />
+
+											</div>
+										</div>
+
+										<!-- Text input-->
+										<div class="form-group">
+											<label class="col-md-4 control-label">No
+												Telephone</label>
+											<div class="col-md-2">
+												<input id="minB" name="no_telp" placeholder="No Telephone"
+													class="form-control input-md" type="text" th:field="*{notlp}" />
+
+											</div>
+										</div>
+
+
+										<!-- Select Basic -->
+										<div class="form-group">
+											<label class="col-md-4 control-label">Role</label>
+											<div class="col-md-2">
+												<select id="declineType" name="role" class="form-control" th:field="*{role}">
+													<option value="">-------</option>
+													<option value="ROLE_ADMIN">ROLE_ADMIN</option>
+													<option value="ROLE_MAHASISWA">ROLE_MAHASISWA</option>
+													<option value="ROLE_KETUA">ROLE_KETUA</option>
+													<option value="ROLE_SEKERTARIS">ROLE_SEKERTARIS</option>
+													<option value="ROLE_BENDAHARA">ROLE_BENDAHARA</option>
+													<option value="ROLE_KADEP">ROLE_KADEP</option>
+													<option value="ROLE_BEKEL">ROLE_BEKEL</option>
+												</select>
+											</div>
+										</div>
+
+										<!-- Button -->
+										<div class="form-group">
+											<label class="col-md-4 control-label"></label>
+											<div class="col-md-4">
+												<button id="submit" name="submit" class="btn btn-success">Submit</button>
+											</div>
+										</div>
+
+								</form>
+
+
+							</div>
+							<!-- /.box-body -->
+						</div>
+
+
+					</div>
+					<!-- /.col -->
+				</div>
+			</section>
+
+		</div>
+
+
+		<th:block th:include="layout :: main-sidebar"></th:block>
+		<th:block th:include="layout :: main-footer"></th:block>
+
+	</div>
+	<script type="text/javascript">
+		tinymce
+				.init({
+					selector : "#textarea",
+					plugins : [
+							"advlist autolink lists link image charmap print preview anchor",
+							"searchreplace visualblocks  fullscreen",
+							"insertdatetime media table contextmenu paste " ],
+					toolbar : "insertfile undo redo | styleselect | bold italic | alignleft aligncenter      alignright alignjustify | bullist numlist outdent indent | link image"
+				});
+	</script>
+</body>
+</html>

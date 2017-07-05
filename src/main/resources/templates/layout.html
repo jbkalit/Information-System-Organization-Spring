@@ -1,0 +1,266 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="head">  
+ <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css}" />
+  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/> 
+  <link rel="stylesheet" th:href="@{/css/AdminLTE.css}"/>
+  <link rel="stylesheet" th:href="@{/css/skins/_all-skins.min.css}"/>
+  <link rel="stylesheet" th:href="@{/richtexteditor/summernote.css}"/>
+  
+
+  <script th:src="@{/plugins/jQuery/jquery-2.2.3.min.js}"></script>
+  <script th:src="@{/js/bootstrap.min.js}"></script>
+  <script th:src="@{/plugins/slimScroll/jquery.slimscroll.min.js}"></script>
+  <script th:src="@{/js/app.min.js}"></script>
+
+  <script th:src="@{/js/tinymce/tinymce.min.js}"></script>
+  <script th:src="@{/js/tinymce/jquery.tinymce.min.js}"></script>
+</head>
+
+<body class="hold-transition skin-blue layout-boxed sidebar-mini">
+
+<div class="wrapper">
+
+  <div th:fragment="main-header">
+  <header class="main-header">
+	
+    <a th:href="@{/}" class="logo">
+      <span class="logo-mini"><b>BEM</b></span>
+      <img src="/img/bem.png" class="user-image" alt="User Image" width="50px" height="50px"/>
+    </a>
+    
+    <nav class="navbar navbar-static-top">
+    <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+       <span class="sr-only">Toggle navigation</span>
+    </a>
+
+      <div class="navbar-custom-menu">
+      	<ul class="nav navbar-nav" sec:authorize="hasRole('ROLE_ADMIN')">
+       		 <li class="dropdown notifications-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administrator</a>
+            <ul class="dropdown-menu">        
+              <li>
+                <ul class="menu">
+                  <li>
+                    <a th:href="@{/create/mahasiswa}">
+ 						Tambah Mahasiswa
+                    </a>
+                  </li>
+                  <li>
+                     <a th:href="@{/create/jabatan}">
+ 						Tambah Jabatan
+                    </a>
+                  </li>
+                  <li>
+                     <a th:href="@{/create/prodi}">
+ 						Tambah Prodi
+                    </a>
+                  </li>
+                  <li>
+                     <a th:href="@{/create/pengurus}">
+ 						Tambah Pengurus
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+       </ul>
+       <ul class="nav navbar-nav" sec:authorize="!isAuthenticated()">
+       		<li class="dropdown tasks-menu">
+       		<a class="dropdown-toggle"  th:href="@{/login}">Sign In</a>
+      		</li>
+       </ul>
+       <ul class="nav navbar-nav" sec:authorize="isAuthenticated()"> 
+          
+          
+          
+           <li class="dropdown user user-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <img src="/img/user2-160x160.jpg" class="user-image" alt="User Image" />
+              <span class="hidden-xs">Anda</span>
+            </a>
+            <ul class="dropdown-menu">
+              <!-- User image -->
+              <li class="user-header">
+                <img src="/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
+
+                <p>
+                  Anda
+                </p>
+              </li>
+              <!-- Menu Body -->
+             
+              <!-- Menu Footer-->
+              <li class="user-footer">
+              <form th:action="@{/logout}" method="post" class="form-group pull-right signoutForm">
+                
+                <div class="pull-right">
+                  <button type="submit" class="btn btn-primary btn-flat">Sign out</button>
+                </div>
+                </form>
+              </li>
+            </ul>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          	
+          
+          
+        </ul>
+        
+      </div>
+    </nav>
+  </header>
+</div>
+
+<!-- =============================================== -->
+<div th:fragment="main-sidebar">
+  <aside class ="main-sidebar">
+    <section class="sidebar">
+      
+      <form action="#" method="get" class="sidebar-form">
+        <div class="input-group">
+          <input type="text" name="q" class="form-control" placeholder="Search..."/>
+              <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                </button>
+              </span>
+        </div>
+      </form>
+      
+      <ul class="sidebar-menu">
+        <li class="header">MAIN NAVIGATION</li>
+        <li><a th:href="@{/}"><i class="fa fa-home"></i> <span>Beranda</span></a></li>
+        <li><a th:href="@{/view/profil/bem}"><i class="fa fa-tasks"></i> <span>Tentang BEM</span></a></li>
+
+
+          <li class="treeview">
+          	<a href="#">
+          		<i class="fa fa-users"></i> <span>Departemen</span>
+         		<span class="pull-right-container">
+             	<i class="fa fa-angle-left pull-right"></i>
+           		</span>
+         	</a> 
+          	<ul class="treeview-menu">
+     			
+     			<li class="treeview">
+     				<a th:href="@{/semua/program-kerja}" sec:authorize="hasAnyRole('ROLE_KETUA,ROLE_ADMIN')">
+     				<i class="fa fa-stack-overflow" ></i><span>Semua Program Kerja</span>
+     				</a>
+     			</li>
+     			
+     			<li class="treeview">
+     				<a>
+     				<i class="fa fa-dot-circle-o"></i> <span>Komunikasi dan Informasi</span>
+     				</a>
+     				<ul class="treeview-menu">
+     				     <li><a th:href="@{/semua/program-umum}"><i class="fa fa-angle-right"></i>Program Kerja</a></li>
+          				 <li><a th:href="@{/create/program/kerja}" sec:authorize="hasAnyRole('ROLE_KADEP,ROLE_ADMIN')"><i class="fa fa-angle-right"></i>Create Program Kerja</a></li>
+          			</ul>
+     			</li>
+     			
+     		    <li class="treeview">
+     				<a href="#">
+     				<i class="fa fa-dot-circle-o"></i> <span>Sarana dan Prasarana</span>
+     				</a>
+     			</li>
+     			
+     			<li class="treeview">
+     				<a href="#">
+     				<i class="fa fa-dot-circle-o"></i> <span>Ilmu Pengetahuan dan Tek.</span>
+     				</a>
+     				
+     			</li>
+     			<li class="treeview">
+     				<a href="#">
+     				<i class="fa fa-dot-circle-o"></i> <span>Ketertiban</span>
+     				</a>
+     				
+     			</li>
+     			<li class="treeview">
+     				<a href="#">
+     				<i class="fa fa-dot-circle-o"></i> <span>Dalam Kampus</span>
+     				</a>
+     				
+     			</li>
+     			<li class="treeview">
+     				<a href="#">
+     				<i class="fa fa-dot-circle-o"></i> <span>Seni Budaya</span>
+     				</a>
+     				
+     			</li>
+     			<li class="treeview">
+     				<a href="#">
+     				<i class="fa fa-dot-circle-o"></i> <span>Agama dan Sosial</span>
+     				</a>
+     				
+     			</li>
+     			<li class="treeview">
+     				<a href="#">
+     				<i class="fa fa-dot-circle-o"></i> <span>Hubungan Masyarakat</span>
+     				</a>
+     				
+     			</li>
+     			<li class="treeview">
+     				<a href="#">
+     				<i class="fa fa-dot-circle-o"></i> <span>Olahraga</span>
+     				</a>
+     				
+     			</li>
+
+          	</ul>
+          </li>
+          		  
+		  <li class="treeview">
+          <a href="#">
+            <i class="fa fa-money"></i> <span>Keuangan</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a th:href="@{/view/laporan/keuangan}" sec:authorize="hasAnyRole('ROLE_BENDAHARA,ROLE_ADMIN')"><i class="fa fa-circle"></i>Laporan Keuangan</a></li>
+          	<li><a th:href="@{/view/iuran}" sec:authorize="hasAnyRole('ROLE_BENDAHARA,ROLE_BEKEL,ROLE_ADMIN')"><i class="fa fa-circle"></i> Iuran</a></li>
+			<li><a th:href="@{/view/rekapitulasi}"><i class="fa fa-circle"></i> Rekapitulasi</a></li>
+          </ul>
+        </li>
+		            
+           <li class="treeview">
+          <a href="#">
+            <i class="fa fa-bookmark"></i> <span>Pengumuman</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a th:href="@{/create/pengumuman}" sec:authorize="hasAnyRole('ROLE_KETUA,ROLE_ADMIN,ROLE_KADEP,ROLE_BENDAHARA,ROLE_SEKRETARIS')"><i class="fa fa-circle"></i> Create Pengumuman</a></li>
+          	<li><a th:href="@{/list/pengumuman}"><i class="fa fa-circle"></i> List Pengumuman</a></li>
+          </ul>
+        </li>          
+       </ul>
+       
+       
+    </section>
+  </aside>
+ </div>
+<!-- =============================================== -->
+
+<div th:fragment="main-footer">
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">
+      <b>Version</b> 0.0.1
+    </div>
+    <strong>PSI <a href="https://cis.del.ac.id">Prototype </a></strong>
+  </footer>
+</div>
+  
+</div>
+
+</body>
+</html>
